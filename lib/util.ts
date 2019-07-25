@@ -38,6 +38,7 @@ function sign(method: string, params: any = {}, config: AlipaySdkConfig): any {
   if (bizContent) {
     if (method === 'alipay.marketing.cashlessitemvoucher.template.create') {
       signParams.bizContent = JSON.stringify(snakeCaseKeys(bizContent, {
+        deep: false,
         exclude: [/PID/, /STORE/],
       }));
     } else {
