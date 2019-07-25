@@ -8,7 +8,7 @@ const privateKey = fs.readFileSync(__dirname + '/fixtures/app-private-key.pem', 
 
 describe('util', function() {
   it('sign', function() {
-    const data = sign('alipay.security.risk.content.analyze', { publicArgs: 1, bizContent: { a_b: 1, aBc: 'Ab' } }, { 
+    const data = sign('alipay.marketing.cashlessitemvoucher.template.create', { publicArgs: 1, bizContent: { a_b: 1, aBc: 'Ab', PID: "XX", STORE: "1" } }, { 
       appId: 'app111',
       charset: 'utf-8',
       version: '1.0.0',
@@ -16,13 +16,13 @@ describe('util', function() {
       privateKey,
     });
     
-    data.method.should.eql('alipay.security.risk.content.analyze');
+    data.method.should.eql('alipay.marketing.cashlessitemvoucher.template.create');
     data.app_id.should.eql('app111');
     data.charset.should.eql('utf-8');
     data.version.should.eql('1.0.0');
     data.sign_type.should.eql('RSA2');
     data.public_args.should.eql(1);
-    data.biz_content.should.eql('{"a_b":1,"a_bc":"Ab"}');
+    data.biz_content.should.eql('{"a_b":1,"a_bc":"Ab","PID":"XX","STORE":"1"}');
     (data.sign !== '').should.eql(true);
   });
 });

@@ -1,6 +1,6 @@
 declare module 'snakecase-keys' {
   interface SnakeCaseKeys {
-    (any): any;
+    (any, options?: any): any;
   }
   const snakeCaseKeys: SnakeCaseKeys;
 

@@ -36,7 +36,13 @@ function sign(method: string, params: any = {}, config: AlipaySdkConfig): any {
   }, params);
 
   if (bizContent) {
-    signParams.bizContent = JSON.stringify(snakeCaseKeys(bizContent));
+    if (method === 'alipay.marketing.cashlessitemvoucher.template.create') {
+      signParams.bizContent = JSON.stringify(snakeCaseKeys(bizContent, {
+        exclude: [/PID/, /STORE/],
+      }));
+    } else {
+      signParams.bizContent = JSON.stringify(snakeCaseKeys(bizContent));
+    }
   }
 
   // params key 驼峰转下划线
